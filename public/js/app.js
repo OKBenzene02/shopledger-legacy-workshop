@@ -77,6 +77,18 @@ function loadDashboardSummary() {
   });
 }
 
+var illustratedSkus = [
+  'grn-001', 'grn-002', 'grn-003', 'oil-001', 'oil-002', 'dry-001',
+  'dry-002', 'bev-001', 'bev-002', 'grn-004', 'spc-001', 'bev-003'
+];
+
+function renderProductIcon(sku) {
+  var key = String(sku || '').toLowerCase();
+  var icon = illustratedSkus.indexOf(key) === -1 ? 'package' : key;
+  return '<svg class="product-icon" aria-hidden="true"><use href="images/product-icons.svg#' +
+    icon + '"></use></svg>';
+}
+
 function renderCatalogTable() {
   var search = (document.getElementById('pos-search').value || '').toLowerCase().trim();
   var html = '';
@@ -105,8 +117,9 @@ function renderCatalogTable() {
     var curQty = cartQuantities[p.id] || 0;
 
     html += '<tr>' +
-      '<td><div><span class="sku-code">' + p.sku + '</span><span class="prod-name">' + p.name + '</span></div>' +
-      '<div class="prod-cat">' + p.category + ' · per ' + (p.unit || 'unit') + '</div></td>' +
+      '<td><div class="product-label">' + renderProductIcon(p.sku) +
+      '<div><div><span class="sku-code">' + p.sku + '</span><span class="prod-name">' + p.name + '</span></div>' +
+      '<div class="prod-cat">' + p.category + ' · per ' + (p.unit || 'unit') + '</div></div></div></td>' +
       '<td><span class="hsn-badge">HSN ' + p.hsn + '</span><span class="gst-badge">' + p.gstPercent + '% GST</span></td>' +
       '<td class="r"><strong>' + fmtMoney(p.price) + '</strong></td>' +
       '<td class="r">' + stockBadge + reservedNote + '</td>' +
@@ -431,7 +444,10 @@ function showTab(which) {
   for (var i = 0; i < tabs.length; i++) {
     var t = tabs[i];
     document.getElementById('view-' + t).style.display = (t === which) ? '' : 'none';
-    document.getElementById('tab-' + t).className = (t === which) ? 'tab-link active' : 'tab-link';
+    var tab = document.getElementById('tab-' + t);
+    tab.classList.toggle('active', t === which);
+    if (t === which) tab.setAttribute('aria-current', 'page');
+    else tab.removeAttribute('aria-current');
   }
   if (which === 'orders') loadOrders();
   if (which === 'khata') loadCustomersDropdown();

@@ -175,9 +175,13 @@ body {
 
 /* Tabs */
 .tabs-bar {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 6px;
-  border-bottom: 1px solid #cbd5e1;
+  padding: 6px;
+  border: 1px solid #d7e1eb;
+  border-radius: 14px;
+  background: #e9eff5;
   margin-bottom: 20px;
 }
 
@@ -185,27 +189,47 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
+  min-height: 44px;
+  padding: 9px 12px;
+  border-radius: 9px;
   text-decoration: none;
   color: #475569;
   font-weight: 600;
   font-size: 14px;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  transition: all 0.15s ease;
 }
 
 .tab-link:hover {
   color: #0f172a;
-  background: #e2e8f0;
-  border-radius: 6px 6px 0 0;
+  background: #f8fafc;
 }
 
 .tab-link.active {
-  color: #2563eb;
-  border-bottom-color: #2563eb;
-  background: #ffffff;
-  border-radius: 6px 6px 0 0;
+  color: #fff;
+  background: #164e63;
+  box-shadow: 0 1px 3px #0f172a30;
+}
+
+.tab-link:focus-visible {
+  outline: 2px solid #0369a1;
+  outline-offset: 2px;
+}
+
+.tab-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+}
+
+@media (max-width: 760px) {
+  .tabs-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 400px) {
+  .tabs-bar {
+    grid-template-columns: 1fr;
+  }
 }
 
 .tab-badge {
@@ -362,6 +386,21 @@ body {
 .prod-name {
   font-weight: 600;
   color: #0f172a;
+}
+
+.product-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 10px;
+  background: #edf4f6;
+  color: #164e63;
 }
 
 .prod-cat {
