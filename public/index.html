@@ -54,18 +54,22 @@
     </section>
 
     <!-- Navigation Tabs -->
-    <nav class="tabs-bar" id="tabs">
-      <a href="#new" id="tab-new" class="tab-link active">
-        New Order (POS)
+    <nav class="tabs-bar" id="tabs" aria-label="ShopLedger workspace">
+      <a href="#new" id="tab-new" class="tab-link active" aria-current="page">
+        <svg class="tab-icon" aria-hidden="true"><use href="images/ui-icons.svg#cart"></use></svg>
+        <span>New Order</span>
       </a>
       <a href="#orders" id="tab-orders" class="tab-link">
-        Order History <span class="tab-badge" id="badge-orders">0</span>
+        <svg class="tab-icon" aria-hidden="true"><use href="images/ui-icons.svg#orders"></use></svg>
+        <span>Order History</span> <span class="tab-badge" id="badge-orders">0</span>
       </a>
       <a href="#khata" id="tab-khata" class="tab-link">
-        Customer Khata (Credit)
+        <svg class="tab-icon" aria-hidden="true"><use href="images/ui-icons.svg#khata"></use></svg>
+        <span>Customer Khata</span>
       </a>
       <a href="#audit" id="tab-audit" class="tab-link">
-        Inventory &amp; GST Audit <span class="tab-badge warn" id="badge-audit">!</span>
+        <svg class="tab-icon" aria-hidden="true"><use href="images/ui-icons.svg#audit"></use></svg>
+        <span>Inventory &amp; GST Audit</span> <span class="tab-badge warn" id="badge-audit">!</span>
       </a>
     </nav>
 
